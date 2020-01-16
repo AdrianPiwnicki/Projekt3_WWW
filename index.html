@@ -34,25 +34,23 @@
     <script src="js/canvas.js"></script>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-dark navbar-expand-md text-center" id="in_formularz">
-        <a class="navbar-brand text-white" id="#">Projekt III - Canvas</a>
-        <div class="collapse navbar-collapse d-inline-block">
-            <ul class="nav navbar-nav align-items-center">
-                <li class="nav-item">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imageFile" accept="image/*" lang="pl-Pl"
-                               onChange="img_show(this)">
-                        <label class="custom-file-label text-left" for="imageFile">Wybierz obraz</label>
-                    </div>
-                </li>
-                <li class="nav-item text-white h5 pl-2">
-                    &larr;Tutaj wczytasz obraz
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+<nav class="navbar navbar-dark navbar-expand-md text-center" id="in_formularz">
+    <a class="navbar-brand text-white" id="#">Projekt III - Canvas</a>
+    <div class="collapse navbar-collapse d-inline-block">
+        <ul class="nav navbar-nav align-items-center">
+            <li class="nav-item">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="imageFile" accept="image/*" lang="pl-Pl"
+                           onChange="img_show(this)">
+                    <label class="custom-file-label text-left" for="imageFile">Wybierz obraz</label>
+                </div>
+            </li>
+            <li class="nav-item text-white h5 pl-2">
+                &larr;Tutaj wczytasz obraz
+            </li>
+        </ul>
+    </div>
+</nav>
 <main>
     <div class="container-fluid">
         <div class="row">
@@ -84,6 +82,7 @@
                             <input type="radio" id="brak" name="customRadio" class="custom-control-input" checked="">
                             <label class="custom-control-label" for="brak">Wszystkie Kolory</label>
                         </div>
+
                         <div class="custom-control custom-checkbox h5">
                             <input type="checkbox" class="custom-control-input" id="jasnosc_0">
                             <label class="custom-control-label" for="jasnosc_0">Jasność (<span
