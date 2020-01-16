@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Projekt3</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .formularz {
+            background: #3d2b1f;
+        }
+
+        #in_formularz {
+            background: #3a3431;
+        }
+
+        #org {
+            background: #2c1b01;
+        }
+
+        .wew_formularz {
+            background: #3a3431;
+            border-radius: 10px;
+        }
+
+        #canvas {
+            background: #281a05;
+        }
+    </style>
+    <script src="js/canvas.js"></script>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-dark navbar-expand-md text-center" id="in_formularz">
+        <a class="navbar-brand text-white" id="#">Projekt III - Canvas</a>
+        <div class="collapse navbar-collapse d-inline-block">
+            <ul class="nav navbar-nav align-items-center">
+                <li class="nav-item">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="imageFile" accept="image/*" lang="pl-Pl"
+                               onChange="img_show(this)">
+                        <label class="custom-file-label text-left" for="imageFile">Wybierz obraz</label>
+                    </div>
+                </li>
+                <li class="nav-item text-white h5 pl-2">
+                    &larr;Tutaj wczytasz obraz
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 pt-2 pb-2 formularz">
+                <div class="col-10 offset-1 border border-secondary text-white mt-2 wew_formularz">
+                    <div class="h4 text-center mt-2">Formularz do przetwarzania obrazu</div>
+                    <div class="custom-control custom-checkbox h5">
+                        <input type="checkbox" id="odwrocone_kolory" class="custom-control-input">
+                        <label class="custom-control-label" for="odwrocone_kolory">Odwrócone kolory</label>
+                    </div>
+                    <div class="custom-control custom-checkbox h5">
+                        <input type="checkbox" id="szarosc" class="custom-control-input">
+                        <label class="custom-control-label" for="szarosc">Skala szarości</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio h5">
+                            <input type="radio" id="czerwony" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="czerwony">Tylko Czerwone Kolory</label>
+                        </div>
+                        <div class="custom-control custom-radio h5">
+                            <input type="radio" id="zielony" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="zielony">Tylko Zielone Kolory</label>
+                        </div>
+                        <div class="custom-control custom-radio h5">
+                            <input type="radio" id="niebieski" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="niebieski">Tylko Niebieskie Kolory</label>
+                        </div>
+                        <div class="custom-control custom-radio h5">
+                            <input type="radio" id="brak" name="customRadio" class="custom-control-input" checked="">
+                            <label class="custom-control-label" for="brak">Wszystkie Kolory</label>
+                        </div>
+                        <div class="custom-control custom-checkbox h5">
+                            <input type="checkbox" class="custom-control-input" id="jasnosc_0">
+                            <label class="custom-control-label" for="jasnosc_0">Jasność (<span
+                                    id="wartosc">0</span>)</label>
+                            <input type="range" class="custom-range mt-1" id="slider" value="0" min="-100" max="100">
+                        </div>
+                        <button id="zmien" type="button" class="btn btn-outline-white h5 mt-2 text-dark"
+                                onclick="check();">Zastosuj Filtr
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 pt-2 pb-2 formularz">
+                <div class="col-10 offset-1 border border-secondary mt-2 text-white wew_formularz">
+                    <div class="h4 text-white text-center">Formularz do rysowania w Canvas</div>
+                    <div class="border border-secondary text-center wew_formularz">
+                        <div class="h5 font-weight-bold">Wymiary płótna Canvas</div>
+                        <div class="form h5">
+                            <label for="w" class="col-6">Szerokość</label>
+                            <input type="number" id="w" name="okresl_w" class="col-5" min="0"
+                                   data-bind="value:replyNumber">
+                        </div>
+                        <div class="form h5">
+                            <label for="h" class="col-6">Wysokość</label>
+                            <input type="number" id="h" name="okresl_h" class="col-5" min="0"
+                                   data-bind="value:replyNumber">
+                        </div>
+                    </div>
+                    <div class="form-group border border-secondary mt-2 wew_formularz">
+                        <div class="h5 text-center font-weight-bold">Rodzaj rysunku</div>
+                        <div class="custom-control custom-radio ml-2 h5">
+                            <input type="radio" id="kwadrat" name="figura" class="custom-control-input">
+                            <label class="custom-control-label" for="kwadrat">Kwadrat</label>
+                        </div>
+                        <div class="form h5 ml-3">
+                            <label for="bok" class="col-6 ">Krawędź</label>
+                            <input type="number" id="bok" name="figura" class="col-5" min="0"
+                                   data-bind="value:replyNumber">
+                        </div>
+                        <div class="custom-control custom-radio ml-2 h5">
+                            <input type="radio" id="serduszko" name="figura" class="custom-control-input">
+                            <label class="custom-control-label" for="serduszko">Serduszko</label>
+                        </div>
+                        <div class="custom-control custom-radio ml-2 h5">
+                            <input type="radio" id="dymek" name="figura" class="custom-control-input">
+                            <label class="custom-control-label" for="dymek">Dymek</label>
+                        </div>
+                    </div>
+                    <div class="form-group border border-secondary mt-2 wew_formularz">
+                        <div class="h5 text-center font-weight-bold">Typ malowania</div>
+                        <div class="custom-control custom-radio ml-2 h5">
+                            <input type="radio" id="stroke" name="typ_w" class="custom-control-input">
+                            <label class="custom-control-label" for="stroke">Kontury</label>
+                        </div>
+                        <div class="custom-control custom-radio ml-2 h5">
+                            <input type="radio" id="fill" name="typ_w" class="custom-control-input">
+                            <label class="custom-control-label" for="fill">Wypełnienie</label>
+                        </div>
+                    </div>
+                    <div class="form-group border border-secondary mt-2 wew_formularz">
+                        <div class="h5 text-center font-weight-bold">Kolor malowania</div>
+                        <div class="custom-control custom-radio ml-2 h5">
+                            <input type="radio" id="red" name="kolor" class="custom-control-input">
+                            <label class="custom-control-label" for="red">Kolor Czerwony</label>
+                        </div>
+                        <div class="custom-control custom-radio ml-2 h5">
+                            <input type="radio" id="blue" name="kolor" class="custom-control-input">
+                            <label class="custom-control-label" for="blue">Kolor Niebieski</label>
+                        </div>
+                        <div class="custom-control custom-radio ml-2 h5">
+                            <input type="radio" id="yellow" name="kolor" class="custom-control-input">
+                            <label class="custom-control-label" for="yellow">Kolor Żółty</label>
+                        </div>
+                        <div class="custom-control custom-radio ml-2 h5">
+                            <input type="radio" id="green" name="kolor" class="custom-control-input">
+                            <label class="custom-control-label" for="green">Kolor Zielony</label>
+                        </div>
+                        <div class="custom-control custom-radio ml-2 h5">
+                            <input type="radio" id="black" name="kolor" class="custom-control-input">
+                            <label class="custom-control-label" for="black">Kolor Czarny</label>
+                        </div>
+                    </div>
+                    <button id="plotno" type="button" class="btn btn-outline-white h5 mt-2 text-dark"
+                            onclick="plotno();">Rysuj
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center" id="org">
+                <div class="h3 mt-2 text-white">Obraz oryginalny - wczytany</div>
+                <img src="https://placehold.it/500x300" id="img" alt="org" class="mb-2 mt-2 img-fluid"/>
+            </div>
+            <div class="col-lg-4 text-center" id="canvas">
+                <div class="h3 mt-2 text-white">Canvas - obraz przetworzony lub narysowany</div>
+                <canvas id="obraz" class="mt-2">
+                    Twoja przeglądarka nie obsługuje Canvas
+                </canvas>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
