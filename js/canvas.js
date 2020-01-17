@@ -202,3 +202,10 @@ function rand(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
+function download() {
+    var pobierz = document.createElement('a');
+    pobierz.download = 'obraz.png';
+    pobierz.href = document.getElementById('obraz').toDataURL('image/png').replace('image/png', 'octet-stream');
+    pobierz.click();
+}

@@ -111,6 +111,9 @@
                         <button id="zmien" type="button" class="btn btn-outline-white h5 mt-2 text-dark"
                                 onclick="check();">Zastosuj Filtr
                         </button>
+                        <button type="button" class="btn btn-outline-white h5 mt-2 text-dark"
+                                onclick="download();">Pobierz obraz
+                        </button>
                     </div>
                 </div>
             </div>
@@ -191,7 +194,10 @@
                         </fieldset>
                     </div>
                     <button id="plotno" type="button" class="btn btn-outline-white h5 mt-2 text-dark"
-                            onclick="plotno();">Rysuj
+                            onclick="plotno();">Rysuj w Canvas
+                    </button>
+                    <button type="button" class="btn btn-outline-white h5 mt-2 text-dark"
+                            onclick="download();">Pobierz rysunek
                     </button>
                 </div>
             </div>
@@ -200,7 +206,7 @@
                 <img src="https://placehold.it/500x500" id="img" alt="org" class="mb-2 mt-2 img-fluid"/>
             </div>
             <div class="col-xl-4 text-center pb-2" id="canvas">
-                <div class="h3 mt-2 text-white">Canvas - przetwarzanie lub rysowanie</div>
+                <div class="h3 mt-2 text-white">Canvas - przetwarzanie i rysowanie</div>
                 <canvas id="obraz" class="mt-2">
                     Twoja przeglądarka nie obsługuje Canvas
                 </canvas>
